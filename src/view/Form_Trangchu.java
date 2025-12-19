@@ -1,0 +1,207 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package view;
+import java.awt.*;
+import javax.swing.*;
+/**
+ *
+ * @author luuxu
+ */
+public class Form_Trangchu extends javax.swing.JPanel {
+
+    /**
+     * Creates new form Form_Chinh
+     */
+    public Form_Trangchu() {
+        initComponents();
+        
+        designTrangChu();
+    }
+    
+    public void designTrangChu() {
+        // Xóa components cũ
+        removeAll();
+        setLayout(new BorderLayout());
+        setBackground(Color.RED); 
+
+        //  BANNER 
+        JLabel lblBackground = new JLabel();
+        lblBackground.setOpaque(true);
+        lblBackground.setBackground(Color.BLUE); 
+        lblBackground.setHorizontalAlignment(JLabel.CENTER);
+        lblBackground.setVerticalAlignment(JLabel.CENTER);
+
+        java.net.URL imgURL = getClass().getResource("/zimages/banner.png");
+
+        if (imgURL != null) {
+            System.out.println("Loading banner image...");
+
+            // Load trực tiếp không scale
+            ImageIcon originalIcon = new ImageIcon(imgURL);
+            lblBackground.setIcon(originalIcon);
+            lblBackground.setText("Loaded: " + 
+                    originalIcon.getIconWidth() + "x" + 
+                    originalIcon.getIconHeight());
+
+            // ĐẢM BẢO CÓ KÍCH THƯỚC
+            lblBackground.setPreferredSize(new Dimension(originalIcon.getIconWidth(), 
+                    originalIcon.getIconHeight()));
+
+        } else {
+            lblBackground.setText("BANNER NOT FOUND");
+            lblBackground.setPreferredSize(new Dimension(800, 500));
+        }
+
+        // THÊM TRỰC TIẾP VÀO PANEL CHÍNH
+        add(lblBackground, BorderLayout.CENTER);
+
+        //  BOTTOM PANEL 
+        JPanel bottomPanel = new JPanel(new GridLayout(1, 3, 10, 0));
+        bottomPanel.setBackground(new Color(15, 20, 45));
+        bottomPanel.setPreferredSize(new Dimension(800, 100));
+
+        // Sử dụng hàm createInfoCard
+        bottomPanel.add(createInfoCard("150 +", "Phòng nghỉ sang trọng", "/zimages/room.png"));
+        bottomPanel.add(createInfoCard("5 stars", "Dịch vụ đẳng cấp", "/zimages/star.png"));
+        bottomPanel.add(createInfoCard("1000 +", "Khách hàng hài lòng", "/zimages/heart.png"));
+        
+        add(bottomPanel, BorderLayout.SOUTH);
+
+        //  Set size cho panel chính
+        setPreferredSize(new Dimension(800, 600));
+
+        revalidate();
+        repaint();
+    }
+
+    private JPanel createInfoCard(String number, String text, String iconPath) {
+        JPanel card = new JPanel();
+        card.setLayout(new BorderLayout(0, 8));
+        card.setBackground(new Color(30, 40, 75));
+        card.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(70, 100, 180), 1),
+                BorderFactory.createEmptyBorder(15, 10, 15, 10)
+        ));
+        card.setPreferredSize(new Dimension(200, 90));
+
+        // Panel chứa icon và số
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+        topPanel.setOpaque(false);
+        topPanel.add(Box.createHorizontalGlue());
+
+        // Icon
+        JLabel lblIcon = new JLabel();
+        java.net.URL imgURL = getClass().getResource(iconPath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH);
+            lblIcon.setIcon(new ImageIcon(img));
+        } else {
+            // Fallback icon
+            if (iconPath.contains("heart")) {
+                lblIcon.setText("♥");
+            } else {
+                lblIcon.setText("★");
+            }
+            lblIcon.setFont(new Font("Segoe UI", Font.BOLD, 20));
+            lblIcon.setForeground(new Color(100, 180, 255));
+        }
+
+        // Số lớn
+        JLabel lblNumber = new JLabel(number);
+        lblNumber.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        lblNumber.setForeground(new Color(120, 200, 255));
+
+        topPanel.add(lblIcon);
+        topPanel.add(Box.createHorizontalStrut(8));
+        topPanel.add(lblNumber);
+        topPanel.add(Box.createHorizontalGlue());
+
+        // Text mô tả
+        JLabel lblText = new JLabel("<html><div style='text-align:center; color: #E8F4FF; font-size: 12px; line-height: 1.3;'>" + text + "</div></html>");
+        lblText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        card.add(topPanel, BorderLayout.CENTER);
+        card.add(lblText, BorderLayout.SOUTH);
+
+        return card;
+    }
+
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(610, 520));
+        setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(610, 90));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Trang chủ");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Chào mừng bạn đến với khách sạn Moonlight");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 678, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        add(jPanel2, java.awt.BorderLayout.CENTER);
+    }// </editor-fold>//GEN-END:initComponents
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    // End of variables declaration//GEN-END:variables
+}
